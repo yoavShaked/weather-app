@@ -13,23 +13,22 @@ function handleResponse(response, next, action) {
     });
   }
 }
-const asyncMiddleware = (store) => (next) => (action) => {
+const asyncMiddleware = (_) => (next) => (action) => {
   const httpAction = action["HTTP_ACTION"];
 
   if (httpAction) {
     const { request } = httpAction;
 
     next({
-      type: httpAction.type.START
+      type: httpAction.type.START,
     });
 
     request()
       .then((data) => {
         handleResponse(data, next, httpAction);
-        console.log("data resolved:", data);
       })
-      .catch((err) => {
-        console.log("err", err);
+      .catch((_) => {
+        handleResponse({ error: true }, next, httpAction);
       });
   } else {
     return next(action);
