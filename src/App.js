@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
-import { getAllContries } from './actions/contries';
+import { getAllCountries } from './actions/countries';
 
 const Index = ({_getTest}) => {
   _getTest();

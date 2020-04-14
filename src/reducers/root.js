@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import contries from './contriesReducer';
+import contries from './countriesReducer';
 
 export default combineReducers({contries});
