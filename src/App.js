@@ -1,10 +1,19 @@
 import React from "react";
-import {connect} from 'react-redux';
-import { getAllCountries } from './actions/countries';
 
-const Index = ({_getTest}) => {
-  _getTest();
-  return <div>Hello React!</div>;
+import { BrowserRouter as Router } from "react-router-dom";
+
+import NevigationBar from "./components/common/Nevigationbar";
+import RouteConfig from "./RouteConfig";
+
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <NevigationBar />
+        <RouteConfig />
+      </div>
+    </Router>
+  );
 };
 
-export default connect(null, {_getTest: getAllContries })(Index);
+export default App;
