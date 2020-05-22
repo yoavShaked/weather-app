@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+var path = require("path");
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
@@ -6,6 +7,15 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "index_bundle.js",
+    publicPath: "/",
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
@@ -15,29 +25,13 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: ["@babel/env", "@babel/react"],
-            plugins: [
-              "@babel/plugin-proposal-class-properties"
-            ],
+            plugins: ["@babel/plugin-proposal-class-properties"],
           },
         },
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: "[name]_[local]_[hash:base64]",
-              sourceMap: true,
-              minimize: true,
-            },
-          },
-        ],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|jpg)$/,
