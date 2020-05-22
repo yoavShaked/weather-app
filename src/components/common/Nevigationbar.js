@@ -26,7 +26,7 @@ const pathCode = {
 export default function Nevigationbar() {
   const classes = useStyles();
   const windowLocationPathName = _.trim(window.location.pathname, '/');
-  const pathCodeValue = _.get(pathCode, windowLocationPathName);
+  const pathCodeValue = _.get(pathCode, windowLocationPathName) || 0;
 
   const [value, setValue] = useState(pathCodeValue);
   
