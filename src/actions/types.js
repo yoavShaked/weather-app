@@ -2,7 +2,6 @@ const createAsyncActionType = (type) => ({
     START: `${type}_START`,
     RESOLVED: `${type}_RESOLVED`,
     ERROR: `${type}_ERROR`,
-    actionType: type
 });
 
 export const GET_DAILY_FORCAST = createAsyncActionType("GET_DAILY_FORCAST");
