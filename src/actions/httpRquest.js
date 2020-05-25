@@ -1,6 +1,6 @@
 const httpAction = (action) => {
   const httpRequestTemplate = {
-    request: null,
+    endpoint: null,
     payload: null,
     type: "",
   };
