@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import contries from './countriesReducer';
+import weather from "./weatherReducer";
 
-export default combineReducers({contries});
+export default combineReducers({ weather });
