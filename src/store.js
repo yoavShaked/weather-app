@@ -3,12 +3,11 @@ import rootReducer from './reducers/root';
 import asyncMiddleware from './middlewares/asyncMiddleware';
 import loggerMiddelware from './middlewares/loggerMiddleware';
 
-const middlewares = [loggerMiddelware, asyncMiddleware];
-
-const configureStore = (initialState = {}) => createStore(
+const configureStore = (initialState = {}) =>
+  createStore(
     rootReducer,
     initialState,
-    applyMiddleware(...middlewares)
-);
+    applyMiddleware(asyncMiddleware, loggerMiddelware)
+  );
 
 export default configureStore;
