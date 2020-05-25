@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { get, debounce, map } from "lodash/fp";
+import { get, debounce, map, find } from "lodash/fp";
 
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -11,10 +11,23 @@ import * as weatherActions from "../../actions/weather";
 
 const mapOption = (option) => get("cityName", option);
 
-const SerachInput = ({ options, placeholder, getLocationAutocomplete }) => {
+const SerachInput = ({
+  options,
+  placeholder,
+  getLocationAutocomplete,
+  getDailyForcast,
+}) => {
   const handleInputChange = (_, value) => {
     if (value) {
-      getLocationAutocomplete(value);
+      const location = find(
+        (option) => value === get("cityName", option),
+        options
+      );
+      if (location) {
+        getDailyForcast(get("cityId", location));
+      } else {
+        getLocationAutocomplete(value);
+      }
     }
   };
 
@@ -43,6 +56,7 @@ SerachInput.propTypes = {
   options: PropTypes.array,
   placeholder: PropTypes.string,
   getLocationAutocomplete: PropTypes.func.isRequired,
+  getDailyForcast: PropTypes.func.isRequired,
 };
 
 SerachInput.defaultProps = {
@@ -64,4 +78,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   getLocationAutocomplete: weatherActions.getLocationAutocomplete,
+  getDailyForcast: weatherActions.getDailyForcast,
 })(SerachInput);
