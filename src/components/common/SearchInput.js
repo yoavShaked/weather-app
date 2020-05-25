@@ -20,19 +20,21 @@ const SerachInput = ({ options, placeholder, getLocationAutocomplete }) => {
 
   const onInputChange = debounce(2000, handleInputChange);
 
+  const renderInput = (params) => (
+    <TextField
+      placeholder={placeholder}
+      {...params}
+      margin="normal"
+      variant="outlined"
+    />
+  );
+
   return (
     <Autocomplete
       freeSolo
       options={map(mapOption, options)}
       onInputChange={onInputChange}
-      renderInput={(params) => (
-        <TextField
-          placeholder={placeholder}
-          {...params}
-          margin="normal"
-          variant="outlined"
-        />
-      )}
+      renderInput={renderInput}
     />
   );
 };
