@@ -7,7 +7,7 @@ const configureStore = (initialState = {}) =>
   createStore(
     rootReducer,
     initialState,
-    applyMiddleware(asyncMiddleware, loggerMiddelware)
+    applyMiddleware(loggerMiddelware, asyncMiddleware)
   );
 
 export default configureStore;
