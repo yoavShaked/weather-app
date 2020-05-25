@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 
 import styled from "styled-components";
-import _ from 'lodash';
-
+import _ from "lodash";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
+import { Tabs, Tab, Typography } from "@material-ui/core";
+
+import { TABS, APP_TITLE } from "../../constants/titles";
 
 import Flexbox from "./Flexbox";
 
@@ -19,29 +18,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const pathCode = {
-  '': 0,
-  "favorites": 1
+  "": 0,
+  favorites: 1,
 };
 
 export default function Nevigationbar() {
   const classes = useStyles();
-  const windowLocationPathName = _.trim(window.location.pathname, '/');
+  const windowLocationPathName = _.trim(window.location.pathname, "/");
   const pathCodeValue = _.get(pathCode, windowLocationPathName) || 0;
 
   const [value, setValue] = useState(pathCodeValue);
-  
+
   const handleChange = (_, newValue) => setValue(newValue);
 
   return (
     <Container className={classes.root}>
-      <Typography>Herolo Weather</Typography>
+      <Typography>{APP_TITLE}</Typography>
       <Tabs
         value={value}
         onChange={handleChange}
         aria-label="simple tabs example"
       >
-        <Tab label={<Link to="/">Home</Link>} />
-        <Tab label={<Link to="/favorites">Favorites</Link>} />
+        <Tab label={<Link to="/">{TABS.HOME}</Link>} />
+        <Tab label={<Link to="/favorites">{TABS.FAVORITES}</Link>} />
       </Tabs>
     </Container>
   );
