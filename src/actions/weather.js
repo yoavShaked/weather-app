@@ -19,3 +19,9 @@ export const getLocationAutocomplete = (locationQuery) =>
     type: types.GET_LOCATION_AUTOCOMPLETE,
     endpoint: weatherRequestsApi.getLocationAutocomplete(locationQuery),
   });
+
+export const setInitialForcast = () =>
+  httpAction({
+    type: types.SET_INITIAL_FORCAST,
+    endpoint: weatherRequestsApi.getLocationAutocomplete("Tel Aviv"),
+  });
