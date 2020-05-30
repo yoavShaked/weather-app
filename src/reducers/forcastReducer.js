@@ -1,4 +1,4 @@
-import { set, flow } from "lodash/fp";
+import { set, flow, get } from "lodash/fp";
 
 import * as types from "../actions/types";
 import { mock_locationAutocomplete } from "../apiRequests";
@@ -6,6 +6,7 @@ import { mock_locationAutocomplete } from "../apiRequests";
 const initialState = {
   isLoading: false,
   dailyForcast: null,
+  cityName: "",
 };
 
 export default (state = initialState, action) => {
@@ -16,9 +17,12 @@ export default (state = initialState, action) => {
       return newState;
     }
     case types.GET_DAILY_FORCAST.RESOLVED: {
+      const { meta, payload } = action;
+
       const newState = flow([
         set("isLoading", false),
-        set("dailyForcast", action.payload),
+        set("dailyForcast", payload),
+        set("cityName", get("cityName", meta)),
       ])(state);
       console.log("next state", newState);
       return newState;
