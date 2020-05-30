@@ -6,16 +6,25 @@ import { get } from "lodash/fp";
 import { Typography } from "@material-ui/core";
 
 import * as weatherActions from "../actions/weather";
-import { DAY_TIME } from "../constants/titles";
+import { DAY_TIME, UNIT_TYPE } from "../constants/titles";
 
 import Flexbox from "../components/common/Flexbox";
 import SwitchLabels from "../components/common/SwitchLabels";
 import WeeklyForcast from "./WeeklyForcast";
 
-const Forcast = ({ setInitialForcast, cityName, description, isLoading }) => {
+const Forcast = ({
+  setInitialForcast,
+  cityName,
+  description,
+  isLoading,
+  unitType,
+}) => {
   const [dayTime, setDayTime] = useState(DAY_TIME.DAY);
   useEffect(() => {
-    setInitialForcast({ cityName: "Tel Aviv" });
+    setInitialForcast({
+      cityName: "Tel Aviv",
+      metric: unitType === UNIT_TYPE.CELSIUS,
+    });
   }, []);
 
   if (isLoading) return <div>Loading</div>;
@@ -39,6 +48,7 @@ const mapStateToProps = (state) => ({
   cityName: get(["forcast", "cityName"], state),
   isLoading: get(["forcast", "isLoading"], state),
   description: get(["forcast", "description"], state),
+  unitType: get(["config", 'unitType'], state),
 });
 
 export default connect(mapStateToProps, {

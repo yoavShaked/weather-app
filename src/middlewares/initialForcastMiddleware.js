@@ -8,8 +8,13 @@ const initialForcast = (store) => (next) => (action) => {
     return next(action);
   }
   const cityId = get(["payload", "0", "Key"], action);
+  const { meta } = action;
+
   store.dispatch(
-    getDailyForcast({ cityId, metric: true }, get("meta", action))
+    getDailyForcast(
+      { cityId, metric: get("metric", meta) },
+      get("meta", action)
+    )
   );
 };
 
