@@ -8,9 +8,9 @@ export const addToFavorites = ({ cityId, cityName }) => ({
   },
 });
 
-export const removeFromFavorites = (cityId) => ({
+export const removeFromFavorites = (cityName) => ({
   type: types.REMOVE_FROM_FAVORITES,
   payload: {
-    cityId,
+    cityName,
   },
 });

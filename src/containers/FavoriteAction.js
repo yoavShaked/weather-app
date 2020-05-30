@@ -23,7 +23,7 @@ const FavoriteAction = ({
         cityName,
       });
     } else {
-      removeFromFavorites(id);
+      removeFromFavorites(cityName);
     }
   };
 
