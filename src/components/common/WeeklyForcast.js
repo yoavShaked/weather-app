@@ -9,8 +9,8 @@ import Flexbox from "./Flexbox";
 
 const WeeklyForcast = ({ weatherForcast, dayTime }) => {
   const mapWeather = (weather) => {
-    const minTemperature = get(["Temperature", "Minimum", "Value"], weather);
-    const maxTemperature = get(["Temperature", "Maximum", "Value"], weather);
+    const minTemperature = get(["temperature", "min", "value"], weather);
+    const maxTemperature = get(["temperature", "max", "value"], weather);
     const description = get([dayTime, "IconPhrase"], weather);
     return (
       <WeatherItemContainer
