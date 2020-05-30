@@ -1,10 +1,9 @@
 import * as types from "./types";
 
-export const setUnitType = (source, dest) => ({
+export const setUnitType = (unitType) => ({
   type: types.SET_DEGREE_UNIT_TYPE,
   payload: {
-    sourceUnitType: source,
-    destUnitType: dest,
+    unitType,
   },
 });
 

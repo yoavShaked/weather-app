@@ -8,7 +8,9 @@ const initialForcast = (store) => (next) => (action) => {
     return next(action);
   }
   const cityId = get(["payload", "0", "Key"], action);
-  store.dispatch(getDailyForcast(cityId, get('meta', action)));
+  store.dispatch(
+    getDailyForcast({ cityId, metric: true }, get("meta", action))
+  );
 };
 
 export default initialForcast;

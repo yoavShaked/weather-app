@@ -9,6 +9,7 @@ import { Tabs, Tab, Typography } from "@material-ui/core";
 import { TABS, APP_TITLE } from "../../constants/titles";
 
 import Flexbox from "./Flexbox";
+import Config from './Config';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,12 +34,11 @@ export default function Nevigationbar() {
 
   return (
     <Container className={classes.root}>
-      <Typography>{APP_TITLE}</Typography>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="simple tabs example"
-      >
+      <Flexbox>
+        <Typography>{APP_TITLE}</Typography>
+        <Config/>
+      </Flexbox>
+      <Tabs value={value} onChange={handleChange}>
         <Tab label={<Link to="/">{TABS.HOME}</Link>} />
         <Tab label={<Link to="/favorites">{TABS.FAVORITES}</Link>} />
       </Tabs>

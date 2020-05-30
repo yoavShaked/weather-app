@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { get, debounce, map, find } from "lodash/fp";
-
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
+import { UNIT_TYPE } from "../../constants/titles";
 import * as weatherActions from "../../actions/weather";
 
 const mapOption = (option) => get("cityName", option);
@@ -16,6 +16,7 @@ const SerachInput = ({
   placeholder,
   getLocationAutocomplete,
   getDailyForcast,
+  unitType,
 }) => {
   const handleInputChange = (_, value) => {
     if (value) {
@@ -24,9 +25,15 @@ const SerachInput = ({
         options
       );
       if (location) {
-        getDailyForcast(get("cityId", location), {
-          cityName: get("cityName", location),
-        });
+        getDailyForcast(
+          {
+            cityId: get("cityId", location),
+            metric: unitType === UNIT_TYPE.CELSIUS,
+          },
+          {
+            cityName: get("cityName", location),
+          }
+        );
       } else {
         getLocationAutocomplete(value);
       }
@@ -73,8 +80,13 @@ const mapStateToProps = (state) => {
       cityId: get("Key", option),
     })
   );
+
+  const unitType = get(["config", "unitType"], state);
+  console.log('unit type', unitType);
+  
   return {
     options,
+    unitType,
   };
 };
 

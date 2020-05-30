@@ -2,10 +2,10 @@ import * as types from "./types";
 import httpAction from "./httpRquest";
 import * as weatherRequestsApi from "../apiRequests";
 
-export const getDailyForcast = (locationId, meta = {}) =>
+export const getDailyForcast = ({ cityId, metric }, meta = {}) =>
   httpAction({
     type: types.GET_DAILY_FORCAST,
-    endpoint: weatherRequestsApi.getDailyForcast(locationId),
+    endpoint: weatherRequestsApi.getDailyForcast(cityId, metric),
     meta,
   });
 
@@ -28,12 +28,4 @@ export const setInitialForcast = (meta = {}) =>
     type: types.SET_INITIAL_FORCAST,
     endpoint: weatherRequestsApi.getLocationAutocomplete("Tel Aviv"),
     meta,
-  });
-
-  export const setUnitType = (source, dest) => ({
-    type: types.SET_DEGREE_UNIT_TYPE,
-    payload: {
-      sourceUnitType: source,
-      destUnitType: dest
-    }
   });
