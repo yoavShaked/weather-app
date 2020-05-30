@@ -24,7 +24,9 @@ const SerachInput = ({
         options
       );
       if (location) {
-        getDailyForcast(get("cityId", location));
+        getDailyForcast(get("cityId", location), {
+          cityName: get("cityName", location),
+        });
       } else {
         getLocationAutocomplete(value);
       }
