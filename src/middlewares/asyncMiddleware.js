@@ -7,7 +7,7 @@ const asyncMiddleware = (store) => (next) => (action) => {
     return next(action);
   }
 
-  const { endpoint } = httpAction;
+  const { endpoint, meta } = httpAction;
 
   next({ type: httpAction.type.START});
 
@@ -17,6 +17,7 @@ const asyncMiddleware = (store) => (next) => (action) => {
       store.dispatch({
         type: httpAction.type.RESOLVED,
         payload: data,
+        meta
       });
     })
     .catch((err) => {
