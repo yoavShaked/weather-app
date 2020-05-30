@@ -11,6 +11,7 @@ import { DAY_TIME, UNIT_TYPE } from "../constants/titles";
 import Flexbox from "../components/common/Flexbox";
 import SwitchLabels from "../components/common/SwitchLabels";
 import WeeklyForcast from "./WeeklyForcast";
+import FavoriteAction from './FavoriteAction';
 
 const Forcast = ({
   setInitialForcast,
@@ -37,6 +38,7 @@ const Forcast = ({
           uncheckedLabel={DAY_TIME.NIGHT}
           afterChange={setDayTime}
         />
+        <FavoriteAction/>
       </Flexbox>
       <Typography>{description}</Typography>
       <WeeklyForcast dayTime={dayTime} />
