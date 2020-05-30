@@ -6,8 +6,8 @@ import { get, debounce, map, find } from "lodash/fp";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-import { UNIT_TYPE } from "../../constants/titles";
-import * as weatherActions from "../../actions/weather";
+import { UNIT_TYPE } from "../constants/titles";
+import * as weatherActions from "../actions/weather";
 
 const mapOption = (option) => get("cityName", option);
 

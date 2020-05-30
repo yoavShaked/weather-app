@@ -1,9 +1,7 @@
 import React from "react";
 
-import Flexbox from "../common/Flexbox";
-import SearchInput from "../common/SearchInput";
-import Forcast from "../common/Forcast";
-import styled from "styled-components";
+import SearchInput from "../../containers/SearchInput";
+import Forcast from "../../containers/Forcast";
 
 const ComponentName = () => {
   return (
@@ -13,10 +11,5 @@ const ComponentName = () => {
     </>
   );
 };
-
-const Card = styled(Flexbox)`
-  width: 10px;
-  background: #ffffff;
-`;
 
 export default ComponentName;
