@@ -5,29 +5,29 @@ import { mock_locationAutocomplete } from "../apiRequests";
 
 const initialState = {
   isLoading: false,
-  dailyForcast: null,
+  weatherForcast: [],
   cityName: "",
+  description: "",
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.GET_DAILY_FORCAST.START: {
       const newState = set("isLoading", true, state);
-      console.log("next state", newState);
       return newState;
     }
     case types.GET_DAILY_FORCAST.RESOLVED: {
       const { meta, payload } = action;
-
       const newState = flow([
         set("isLoading", false),
-        set("dailyForcast", payload),
+        set("weatherForcast", get("DailyForecasts", payload)),
         set("cityName", get("cityName", meta)),
+        set("description", get(["Headline", "Text"], payload))
       ])(state);
-      console.log("next state", newState);
       return newState;
     }
-    default:
+    default: {
       return state;
+    }
   }
 };
