@@ -1,4 +1,4 @@
-import { set, flow, get } from "lodash/fp";
+import { set, flow } from "lodash/fp";
 
 import * as types from "../actions/types";
 import { mock_locationAutocomplete } from "../apiRequests";
@@ -12,7 +12,6 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case types.GET_LOCATION_AUTOCOMPLETE.START: {
       const newState = set("isLoading", true, state);
-      console.log("next state", newState);
       return newState;
     }
     case types.GET_LOCATION_AUTOCOMPLETE.RESOLVED: {
@@ -20,8 +19,7 @@ export default (state = initialState, action) => {
         set("isLoading", false),
         set("suggestedLocations", action.payload),
       ])(state);
-      console.log("next state", newState);
-      return newState;
+       return newState;
     }
     case types.GET_LOCATION_AUTOCOMPLETE.ERROR: {
       return Object.assign(
