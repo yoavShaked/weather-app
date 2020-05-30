@@ -11,15 +11,16 @@ import * as favoritesActions from "./../actions/favorites";
 import ToggledComponent from "./../components/common/ToggledComponent";
 
 const FavoriteAction = ({
-  id,
+  cityId,
   cityName,
   addToFavorites,
   removeFromFavorites,
+  isFavorite,
 }) => {
   const onClick = (toggledValue) => {
     if (toggledValue) {
       addToFavorites({
-        cityId: id,
+        cityId,
         cityName,
       });
     } else {
@@ -29,6 +30,7 @@ const FavoriteAction = ({
 
   return (
     <ToggledComponent
+      initialValue={isFavorite}
       onClick={onClick}
       OnComponent={FavoriteIcon}
       OffComponent={FavoriteBorderIcon}
@@ -36,10 +38,15 @@ const FavoriteAction = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  id: get(["forcast", "cityId"], state),
-  cityName: get(["forcast", "cityName"], state),
-});
+const mapStateToProps = (state) => {
+  const cityName = get(["forcast", "cityName"], state);
+  const isFavorite = !!get(['favorites','favorites', cityName], state);
+  return {
+    cityId: get(["forcast", "cityId"], state),
+    cityName,
+    isFavorite
+  }
+};
 
 export default connect(mapStateToProps, {
   addToFavorites: favoritesActions.addToFavorites,
