@@ -56,11 +56,13 @@ const Container = styled(Flexbox)`
   margin: 40px auto auto auto;
   .MuiTypography-body1 {
     margin: 0 auto;
+    color: #fff;
   }
 `;
 
 const ActionsContainer = styled(Flexbox)`
   justify-content: space-around;
+  align-items: center;
   margin: 30px 0;
 `;
 
