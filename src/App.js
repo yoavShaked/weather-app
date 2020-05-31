@@ -4,16 +4,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import NevigationBar from "./components/common/Nevigationbar";
 import RouteConfig from "./RouteConfig";
+import Main from './Main';
 
 const App = () => {
-  return (
-    <Router>
-      <div>
-        <NevigationBar />
-        <RouteConfig />
-      </div>
-    </Router>
-  );
+  return <Main/>
 };
 
 export default App;
