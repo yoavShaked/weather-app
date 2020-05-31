@@ -1,3 +1,4 @@
+import { set } from "lodash/fp";
 import * as types from "./types";
 import httpAction from "./httpRquest";
 import * as weatherRequestsApi from "../apiRequests";
@@ -6,7 +7,7 @@ export const getDailyForcast = ({ cityId, metric }, meta = {}) =>
   httpAction({
     type: types.GET_DAILY_FORCAST,
     endpoint: weatherRequestsApi.getDailyForcast(cityId, metric),
-    meta,
+    meta: set("cityId", cityId, meta),
   });
 
 export const getLocationCurrentWeather = (locationId, meta = {}) =>
