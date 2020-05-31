@@ -6,17 +6,21 @@ import { get } from "lodash/fp";
 import { Typography } from "@material-ui/core";
 
 import Flexbox from "../components/common/Flexbox";
+import Icon from '../components/common/Icon';
 
 const WeeklyForcast = ({ weatherForcast, dayTime }) => {
   const mapWeather = (weather, index) => {
     const minTemperature = get(["temperature", "min"], weather);
     const maxTemperature = get(["temperature", "max"], weather);
     const description = get([dayTime, "IconPhrase"], weather);
+    const iconId = get([dayTime, "Icon"], weather);
+
     return (
       <WeatherItemContainer
         flexDirection="column"
         key={`${index}-${minTemperature}-${maxTemperature}`}
       >
+        <Icon img={`src/icons/${iconId}.png`}/>
         <Typography>{description}</Typography>
         <Typography>{`${minTemperature} / ${maxTemperature}`}</Typography>
       </WeatherItemContainer>
