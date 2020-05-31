@@ -20,7 +20,7 @@ const WeeklyForcast = ({ weatherForcast, dayTime }) => {
         flexDirection="column"
         key={`${index}-${minTemperature}-${maxTemperature}`}
       >
-        <Icon img={`src/icons/${iconId}.png`}/>
+        <Icon img={iconId} />
         <Typography>{description}</Typography>
         <Typography>{`${minTemperature} / ${maxTemperature}`}</Typography>
       </WeatherItemContainer>
@@ -34,6 +34,7 @@ const WeatherItemContainer = styled(Flexbox)`
   margin: 20px;
   flex-wrap: wrap;
 `;
+
 const Container = styled(Flexbox)`
     border: 1px solid;
     border-radius: 7px;
