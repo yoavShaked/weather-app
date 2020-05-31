@@ -42,6 +42,7 @@ export default (state = initialState, action) => {
           )
         ),
         set("cityName", get("cityName", meta)),
+        set('cityId', get('cityId', meta)),
         set("description", get(["Headline", "Text"], payload)),
       ])(state);
       return newState;
