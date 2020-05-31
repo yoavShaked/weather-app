@@ -28,6 +28,7 @@ const WeeklyForcast = ({ weatherForcast, dayTime }) => {
 
 const WeatherItemContainer = styled(Flexbox)`
   margin: 20px;
+  flex-wrap: wrap;
 `;
 
 const mapStateToProps = (state) => ({

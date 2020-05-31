@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+import styled from 'styled-components';
 import { get, debounce, map, find } from "lodash/fp";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -52,7 +53,7 @@ const SerachInput = ({
   );
 
   return (
-    <Autocomplete
+    <StyledAutocomplete
       freeSolo
       options={map(mapOption, options)}
       onInputChange={onInputChange}
@@ -60,6 +61,14 @@ const SerachInput = ({
     />
   );
 };
+
+const StyledAutocomplete = styled(Autocomplete)`
+  width: fit-content;
+  margin: 0 auto;
+  .MuiFormControl-fullWidth {
+    width: 800px;
+  }
+`;
 
 SerachInput.propTypes = {
   options: PropTypes.array,
