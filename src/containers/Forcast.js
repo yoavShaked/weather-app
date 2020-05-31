@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import moment from 'moment';
+import styled from "styled-components";
+import moment from "moment";
 import { get } from "lodash/fp";
 import { Typography } from "@material-ui/core";
-import styled from 'styled-components';
+
 import * as weatherActions from "../actions/weather";
 import { DAY_TIME, UNIT_TYPE } from "../constants/titles";
 
 import Flexbox from "../components/common/Flexbox";
 import SwitchLabels from "../components/common/SwitchLabels";
+
 import WeeklyForcast from "./WeeklyForcast";
-import FavoriteAction from './FavoriteAction';
+import FavoriteAction from "./FavoriteAction";
+import ForcastSkelaton from './ForcastSkelaton';
 
 const Forcast = ({
   setInitialForcast,
@@ -29,9 +32,12 @@ const Forcast = ({
     });
   }, []);
 
-  if (isLoading) return <div>Loading</div>;
+  if(isLoading)return (<ForcastSkelaton/>
+  );
 
-  const currentFullTime = `${moment().format('dddd')} ${moment().format('MMMM Do YYYY, h:mm:ss a')}`;
+  const currentFullTime = `${moment().format("dddd")} ${moment().format(
+    "MMMM Do YYYY, h:mm:ss a"
+  )}`;
 
   return (
     <Container flexDirection="column">
@@ -67,8 +73,8 @@ const ActionsContainer = styled(Flexbox)`
 `;
 
 const Top = styled(Flexbox)`
-    width: inherit;
-    justify-content: space-between;
+  width: inherit;
+  justify-content: space-between;
 `;
 
 const TopRight = styled(Flexbox)`
@@ -77,11 +83,12 @@ const TopRight = styled(Flexbox)`
   justify-content: space-between;
 `;
 
+
 const mapStateToProps = (state) => ({
   cityName: get(["forcast", "cityName"], state),
   isLoading: get(["forcast", "isLoading"], state),
   description: get(["forcast", "description"], state),
-  unitType: get(["config", 'unitType'], state),
+  unitType: get(["config", "unitType"], state),
 });
 
 export default connect(mapStateToProps, {
