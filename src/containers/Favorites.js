@@ -84,7 +84,7 @@ const WeatherItem = ({ weather, unitType }) => {
 
 const Favorites = ({ favorites, unitType }) => {
   const mapFavorite = (favoriteWeather) => (
-    <WeatherItem weather={favoriteWeather} unitType={unitType} />
+    <WeatherItem key={get('cityName', favoriteWeather)} weather={favoriteWeather} unitType={unitType} />
   );
   return <Container>{map(mapFavorite, favorites)}</Container>;
 };
