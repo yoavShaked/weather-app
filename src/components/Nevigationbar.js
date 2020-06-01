@@ -51,8 +51,9 @@ const Container = styled(Flexbox)`
   background: linear-gradient(
     90deg,
     rgba(84, 84, 171, 1) 0%,
-    rgba(11, 219, 244, 1) 100%,
-    rgba(3, 0, 46, 1) 100%
+    rgba(0, 0, 0, 1) 0%,
+    rgba(7, 7, 11, 1) 100%,
+    rgba(11, 219, 244, 1) 100%
   );
 
   .MuiTabs-root {
