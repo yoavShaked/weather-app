@@ -12,10 +12,12 @@ import { DAY_TIME, UNIT_TYPE } from "../constants/titles";
 
 import Flexbox from "../components/common/Flexbox";
 import SwitchLabels from "../components/common/SwitchLabels";
+import ErrorHandler from "./ErrorHandle";
 
 import WeeklyForcast from "./WeeklyForcast";
 import FavoriteAction from "./FavoriteAction";
 import ForcastSkelaton from './ForcastSkelaton';
+
 
 const Forcast = ({
   setInitialForcast,
@@ -32,28 +34,29 @@ const Forcast = ({
     });
   }, []);
 
-  if(isLoading)return (<ForcastSkelaton/>
-  );
+  if (isLoading) return <ForcastSkelaton />;
 
   const currentFullTime = `${moment().format("dddd")} ${moment().format(
     "MMMM Do YYYY, h:mm:ss a"
   )}`;
 
   return (
-    <Container flexDirection="column">
-      <Typography>{cityName}</Typography>
-      <Typography>{currentFullTime}</Typography>
-      <Typography>{description}</Typography>
-      <ActionsContainer>
-        <SwitchLabels
-          checkedLabel={DAY_TIME.DAY}
-          uncheckedLabel={DAY_TIME.NIGHT}
-          afterChange={setDayTime}
-        />
-        <FavoriteAction />
-      </ActionsContainer>
-      <WeeklyForcast dayTime={dayTime} />
-    </Container>
+    <ErrorHandler reducerName="forcast">
+      <Container flexDirection="column">
+        <Typography>{cityName}</Typography>
+        <Typography>{currentFullTime}</Typography>
+        <Typography>{description}</Typography>
+        <ActionsContainer>
+          <SwitchLabels
+            checkedLabel={DAY_TIME.DAY}
+            uncheckedLabel={DAY_TIME.NIGHT}
+            afterChange={setDayTime}
+          />
+          <FavoriteAction />
+        </ActionsContainer>
+        <WeeklyForcast dayTime={dayTime} />
+      </Container>
+    </ErrorHandler>
   );
 };
 

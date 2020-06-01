@@ -10,6 +10,8 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { UNIT_TYPE } from "../constants/titles";
 import * as weatherActions from "../actions/weather";
 
+import ErrorHandler from './ErrorHandle';
+
 const mapOption = (option) => get("cityName", option);
 
 const SerachInput = ({
@@ -52,14 +54,16 @@ const SerachInput = ({
     />
   );
 
-  return (
-    <StyledAutocomplete
-      freeSolo
-      options={map(mapOption, options)}
-      onInputChange={onInputChange}
-      renderInput={renderInput}
-    />
-  );
+    return (
+      <ErrorHandler reducerName="weather">
+        <StyledAutocomplete
+          freeSolo
+          options={map(mapOption, options)}
+          onInputChange={onInputChange}
+          renderInput={renderInput}
+        />
+      </ErrorHandler>
+    );
 };
 
 const StyledAutocomplete = styled(Autocomplete)`
@@ -91,8 +95,7 @@ const mapStateToProps = (state) => {
   );
 
   const unitType = get(["config", "unitType"], state);
-  console.log('unit type', unitType);
-  
+
   return {
     options,
     unitType,
