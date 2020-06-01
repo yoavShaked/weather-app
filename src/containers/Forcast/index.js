@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import styled from "styled-components";
 import moment from "moment";
 import { get } from "lodash/fp";
 import { Typography } from "@material-ui/core";
@@ -10,13 +9,17 @@ import { Typography } from "@material-ui/core";
 import { DAY_TIME, UNIT_TYPE } from "../../constants/titles";
 import * as weatherActions from "../../actions/weather";
 
-import Flexbox from "../../components/Flexbox";
 import SwitchLabels from "../../components/SwitchLabels";
 import ForcastSkelaton from "../../components/ForcastSkelaton";
 
 import ErrorHandler from "../ErrorHandle";
 import WeeklyForcast from "../WeeklyForcast";
 import FavoriteAction from "../FavoriteAction";
+
+import {
+  Container,
+  ActionsContainer,
+} from "./styled-components";
 
 const Forcast = ({
   setInitialForcast,
@@ -61,32 +64,6 @@ const Forcast = ({
     </ErrorHandler>
   );
 };
-
-const Container = styled(Flexbox)`
-  width: 800px;
-  margin: 40px auto auto auto;
-  .MuiTypography-body1 {
-    margin: 0 auto;
-    color: #fff;
-  }
-`;
-
-const ActionsContainer = styled(Flexbox)`
-  justify-content: space-around;
-  align-items: center;
-  margin: 30px 0;
-`;
-
-const Top = styled(Flexbox)`
-  width: inherit;
-  justify-content: space-between;
-`;
-
-const TopRight = styled(Flexbox)`
-  width: 210px;
-  align-items: center;
-  justify-content: space-between;
-`;
 
 const mapStateToProps = (state) => ({
   cityName: get(["forcast", "cityName"], state),

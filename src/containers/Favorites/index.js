@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import { connect } from "react-redux";
 
 import { get, map } from "lodash/fp";
-import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 
@@ -11,6 +10,8 @@ import * as weatherActions from "../../actions/weather";
 
 import Flexbox from "../../components/Flexbox";
 import Icon from "../../components/Icon";
+
+import { Container, WeatherItemContainer, WeatherItemHeader } from './styled-components';
 
 const getWeatherData = (weatherObject, unitType = UNIT_TYPE.CELSIUS) => {
   const _unitType = unitType === UNIT_TYPE.CELSIUS ? "Metric" : "Imperial";
@@ -112,12 +113,6 @@ const Favorites = ({ favorites, unitType, getDailyForcast }) => {
   if (isRedirect)  return <Redirect to='/'/>
   return <Container>{map(mapFavorite, favorites)}</Container>;
 };
-
-const WeatherItemContainer = styled(Flexbox)``;
-
-const WeatherItemHeader = styled(Flexbox)``;
-
-const Container = styled(Flexbox)``;
 
 const mapStateToProps = (state) => ({
   favorites: get(["favorites", "favorites"], state),
