@@ -3,16 +3,28 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import Toast from "../../components/Toast";
 
 export const StyledAutocomplete = styled(Autocomplete)`
-  width: fit-content;
-  margin: 0 auto;
-  .MuiFormControl-fullWidth {
-    width: 800px;
-  }
-`;
-
-export const ToastContainer = styled.div`
-         .MuiAlert-standardError {
-           width: 306px;
-           margin-left: 277px;
+         width: fit-content;
+         margin: 0 auto;
+         .MuiFormControl-fullWidth {
+           width: 800px;
+           @media only screen and (min-width: 768px) {
+             width: 650px;
+           }
+           @media screen and (min-width: 1024px) {
+             width: 800px;
+           }
+         }
+         @media only screen and (min-width: 768px) {
+           margin-left: 44px;
+         }
+         @media screen and (min-width: 1024px) {
+           margin-left: 87px;
          }
        `;
+
+export const ToastContainer = styled.div`
+  .MuiAlert-standardError {
+    width: 306px;
+    margin-left: 277px;
+  }
+`;
