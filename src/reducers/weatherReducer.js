@@ -6,31 +6,28 @@ import { mock_locationAutocomplete } from "../apiRequests";
 const initialState = {
   isLoading: false,
   suggestedLocations: [],
+  errorMessage: "",
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.GET_LOCATION_AUTOCOMPLETE.START: {
-      const newState = set("isLoading", true, state);
+      const newState = flow([set('isLoading', true), set('errorMessage', '')])(state);
       return newState;
     }
     case types.GET_LOCATION_AUTOCOMPLETE.RESOLVED: {
       const newState = flow([
         set("isLoading", false),
+        set('errorMessage', ''),
         set("suggestedLocations", action.payload),
       ])(state);
        return newState;
     }
     case types.GET_LOCATION_AUTOCOMPLETE.ERROR: {
-      return Object.assign(
-        state,
-        {},
-        {
-          isLoading: false,
-          suggestedLocations: [...mock_locationAutocomplete],
-          error: true,
-        }
-      );
+      return flow([
+        set("isLoading", false),
+        set("errorMessage", get("errorMessage", action)),
+      ])(state);
     }
     default:
       return state;

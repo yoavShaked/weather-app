@@ -11,8 +11,7 @@ const asyncMiddleware = (store) => (next) => (action) => {
 
   next({ type: httpAction.type.START});
 
-  fetch(endpoint)
-    .then((res) => res.json())
+  endpoint()
     .then((data) => {
       store.dispatch({
         type: httpAction.type.RESOLVED,
@@ -23,6 +22,7 @@ const asyncMiddleware = (store) => (next) => (action) => {
     .catch((err) => {
       store.dispatch({
         type: httpAction.type.ERROR,
+        errorMessage: httpAction.errorMessage
       });
     });
 };
