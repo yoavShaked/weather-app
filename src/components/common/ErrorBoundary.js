@@ -2,23 +2,28 @@ import React from "react";
 import styled from "styled-components";
 import Toast from "./Toast";
 
+const defaultContext = "Something went wrong. Please try to refresh the page.";
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true };
+  componentDidCatch(error, errorInfo) {
+    this.setState({
+      error: error,
+      errorInfo: errorInfo,
+    });
   }
 
   render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
+    if (this.state.errorInfo) {
+      const context =
+        (this.state.error && this.state.error.toString()) || defaultContext;
+
       return (
         <ErrorToast>
-          <Toast context="Something went wrong. Please try to refresh the page." />
+          <Toast context={context} />
         </ErrorToast>
       );
     }
