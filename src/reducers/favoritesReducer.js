@@ -1,4 +1,4 @@
-import { set, get } from "lodash/fp";
+import { set, get, isArray } from "lodash/fp";
 import * as types from "../actions/types";
 
 const initialState = {
@@ -10,16 +10,16 @@ export default (state = initialState, action) => {
     case types.ADD_TO_FAVORITES.RESOLVED: {
       const { payload, meta } = action;
       const cityName = get("cityName", meta);
-
-      return set(
+      const newState = set(
         ["favorites", cityName],
         {
           cityId: get("cityId", meta),
           cityName,
-          ...payload,
+          details: isArray(payload) ? payload[0] : payload,
         },
         state
       );
+      return newState;
     }
     case types.ADD_TO_FAVORITES.ERROR: {
       const { payload } = action;
