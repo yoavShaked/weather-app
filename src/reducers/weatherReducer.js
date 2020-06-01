@@ -1,4 +1,4 @@
-import { set, flow } from "lodash/fp";
+import { set, flow, get } from "lodash/fp";
 
 import * as types from "../actions/types";
 import { mock_locationAutocomplete } from "../apiRequests";
