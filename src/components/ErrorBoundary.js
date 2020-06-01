@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Toast from "./Toast";
 
-const defaultContext = "Something went wrong. Please try to refresh the page.";
+const defaultContext = "Something went wrong...";
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
