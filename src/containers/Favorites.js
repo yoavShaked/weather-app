@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, {useState} from "react";
 import { connect } from "react-redux";
 
-import { get, values, map } from "lodash/fp";
+import { get, map } from "lodash/fp";
 import styled from "styled-components";
-
+import { Redirect } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 
 import { UNIT_TYPE } from "../constants/titles";
+import * as weatherActions from "../actions/weather";
+
 import Flexbox from "./../components/common/Flexbox";
 import Icon from "../components/common/Icon";
 
@@ -82,10 +84,32 @@ const WeatherItem = ({ weather, unitType }) => {
   );
 };
 
-const Favorites = ({ favorites, unitType }) => {
-  const mapFavorite = (favoriteWeather) => (
-    <WeatherItem key={get('cityName', favoriteWeather)} weather={favoriteWeather} unitType={unitType} />
-  );
+const Favorites = ({ favorites, unitType, getDailyForcast }) => {
+    const [isRedirect, setRedircet] = useState(false);
+
+  const onClickFavorite = (cityId, isMetric, meta = {}) => () => {
+      getDailyForcast({ cityId, metric: isMetric }, meta);
+      setRedircet(true);
+  }
+
+  const mapFavorite = (favoriteWeather) => {
+    const cityName = get("cityName", favoriteWeather);
+    const cityId = get("cityId", favoriteWeather);
+    const isMetric = unitType === UNIT_TYPE.CELSIUS;
+
+    return (
+      <div
+        onClick={onClickFavorite(cityId, isMetric, {
+          cityName,
+        })}
+        key={cityName}
+      >
+        <WeatherItem weather={favoriteWeather} unitType={unitType} />
+      </div>
+    );
+  };
+
+  if (isRedirect)  return <Redirect to='/'/>
   return <Container>{map(mapFavorite, favorites)}</Container>;
 };
 
@@ -100,4 +124,6 @@ const mapStateToProps = (state) => ({
   unitType: get(["config", "unitType"], state),
 });
 
-export default connect(mapStateToProps)(Favorites);
+export default connect(mapStateToProps, {
+  getDailyForcast: weatherActions.getDailyForcast,
+})(Favorites);

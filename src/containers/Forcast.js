@@ -16,8 +16,7 @@ import ErrorHandler from "./ErrorHandle";
 
 import WeeklyForcast from "./WeeklyForcast";
 import FavoriteAction from "./FavoriteAction";
-import ForcastSkelaton from './ForcastSkelaton';
-
+import ForcastSkelaton from "./ForcastSkelaton";
 
 const Forcast = ({
   setInitialForcast,
@@ -25,13 +24,16 @@ const Forcast = ({
   description,
   isLoading,
   unitType,
+  fetchForcast,
 }) => {
   const [dayTime, setDayTime] = useState(DAY_TIME.DAY);
   useEffect(() => {
-    setInitialForcast({
-      cityName: "Tel Aviv",
-      metric: unitType === UNIT_TYPE.CELSIUS,
-    });
+    if (!fetchForcast) {
+      setInitialForcast({
+        cityName: "Tel Aviv",
+        metric: unitType === UNIT_TYPE.CELSIUS,
+      });
+    }
   }, []);
 
   if (isLoading) return <ForcastSkelaton />;
@@ -86,11 +88,11 @@ const TopRight = styled(Flexbox)`
   justify-content: space-between;
 `;
 
-
 const mapStateToProps = (state) => ({
   cityName: get(["forcast", "cityName"], state),
   isLoading: get(["forcast", "isLoading"], state),
   description: get(["forcast", "description"], state),
+  fetchForcast: get(["forcast", "fetchForcast"], state),
   unitType: get(["config", "unitType"], state),
 });
 
