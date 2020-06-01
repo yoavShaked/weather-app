@@ -7,6 +7,7 @@ export default function SwitchLabels({
   checkedLabel,
   uncheckedLabel,
   afterChange,
+  color
 }) {
   const [state, setState] = useState({
     checked: true,
@@ -32,7 +33,7 @@ export default function SwitchLabels({
             checked={state.checked}
             onChange={handleChange}
             name="checked"
-            color="primary"
+            color={color}
           />
         }
         label={state.label}
@@ -44,4 +45,9 @@ SwitchLabels.propTypes = {
   checkedLabel: PropTypes.string,
   uncheckedLabel: PropTypes.string,
   afterChange: PropTypes.func,
+  color: PropTypes.string
+};
+
+SwitchLabels.propTypes = {
+  color: "primary",
 };
