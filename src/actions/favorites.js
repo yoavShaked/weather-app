@@ -5,7 +5,8 @@ import * as weatherRequestsApi from "../apiRequests";
 export const addToFavorites = ({ cityId, cityName }) =>
   httpAction({
     type: types.ADD_TO_FAVORITES,
-    payload: {
+    endpoint: weatherRequestsApi.getLocationCurrentWeather(cityId),
+    meta: {
       cityId,
       cityName,
     },
@@ -17,11 +18,3 @@ export const removeFromFavorites = (cityName) => ({
     cityName,
   },
 });
-
-export const fetchFavoritesWeather = (favorites, meta = {}) =>
-  httpAction({
-    type: types.GET_FAVORITES_WEATHER,
-    endpoint: weatherRequestsApi.getFavoritesWeather(favorites),
-    meta,
-    errorMessage: "Faild to fetch favorites locations weather.",
-  });

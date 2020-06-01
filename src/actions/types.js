@@ -15,5 +15,6 @@ export const SET_DEGREE_UNIT_TYPE = "SET_DEGREE_UNIT_TYPE";
 export const SET_DAY_TIME = "SET_DAY_TIME";
 
 //favorites
-export const ADD_TO_FAVORITES = "ADD_TO_FAVORITES";
+export const ADD_TO_FAVORITES = createAsyncActionType("ADD_TO_FAVORITES");
 export const REMOVE_FROM_FAVORITES = "REMOVE_FROM_FAVORITES";
+

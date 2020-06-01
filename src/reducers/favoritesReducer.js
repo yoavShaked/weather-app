@@ -1,29 +1,36 @@
-import { filter, set } from "lodash/fp";
+import { set, get } from "lodash/fp";
 import * as types from "../actions/types";
 
 const initialState = {
-  favorites: null
+  favorites: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_TO_FAVORITES: {
-      const { cityId, cityName } = action.payload;
+    case types.ADD_TO_FAVORITES.RESOLVED: {
+      const { payload, meta } = action;
+      const cityName = get("cityName", meta);
 
-      const newState = set(
+      return set(
         ["favorites", cityName],
-        { cityId, cityName },
+        {
+          cityId: get("cityId", meta),
+          cityName,
+          ...payload,
+        },
         state
       );
-
-      return newState;
+    }
+    case types.ADD_TO_FAVORITES.ERROR: {
+      const { payload } = action;
+      return state;
     }
     case types.REMOVE_FROM_FAVORITES: {
       const { cityName } = action.payload;
       const { favorites } = state;
       delete favorites[cityName];
 
-      const newState = set("favorites", {...favorites}, state);
+      const newState = set("favorites", { ...favorites }, state);
       return newState;
     }
     default:

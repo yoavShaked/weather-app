@@ -5,7 +5,6 @@ import { get } from "lodash/fp";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
-
 import * as favoritesActions from "./../actions/favorites";
 
 import ToggledComponent from "./../components/common/ToggledComponent";
@@ -20,8 +19,8 @@ const FavoriteAction = ({
   const onClick = (toggledValue) => {
     if (toggledValue) {
       addToFavorites({
-        cityId,
         cityName,
+        cityId,
       });
     } else {
       removeFromFavorites(cityName);
@@ -40,12 +39,12 @@ const FavoriteAction = ({
 
 const mapStateToProps = (state) => {
   const cityName = get(["forcast", "cityName"], state);
-  const isFavorite = !!get(['favorites','favorites', cityName], state);
+  const isFavorite = !!get(["favorites", "favorites", cityName], state);
   return {
     cityId: get(["forcast", "cityId"], state),
     cityName,
-    isFavorite
-  }
+    isFavorite,
+  };
 };
 
 export default connect(mapStateToProps, {
