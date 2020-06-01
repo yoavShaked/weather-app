@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import { isFunction } from "lodash/fp";
 
@@ -18,6 +19,13 @@ const ToggledComponent = ({
 
   const Component = toggle ? OnComponent : OffComponent;
   return <Component onClick={_setToggle} />;
+};
+
+ToggledComponent.propTypes = {
+  initialValue: PropTypes.bool,
+  OnComponent: PropTypes.node,
+  OffComponent: PropTypes.node,
+  onClick: PropTypes.func
 };
 
 export default ToggledComponent;
