@@ -20,7 +20,7 @@ const WeeklyForcast = ({ weatherForcast, dayTime }) => {
         key={`${index}-${minTemperature}-${maxTemperature}`}
       >
         <Icon img={iconId} />
-        <Typography>{description}</Typography>
+        <Typography className='description'>{description}</Typography>
         <Typography>{`${minTemperature} / ${maxTemperature}`}</Typography>
       </WeatherItemContainer>
     );

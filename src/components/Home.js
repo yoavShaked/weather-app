@@ -7,9 +7,7 @@ import Forcast from "../containers/Forcast";
 const Home = () => {
   return (
     <>
-      <ErrorBoundary>
-        <SearchInput />
-      </ErrorBoundary>
+      <SearchInput />
       <ErrorBoundary>
         <Forcast />
       </ErrorBoundary>

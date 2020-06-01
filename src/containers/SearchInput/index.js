@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -8,10 +8,14 @@ import TextField from "@material-ui/core/TextField";
 import { UNIT_TYPE } from "../../constants/titles";
 import * as weatherActions from "../../actions/weather";
 
-import ErrorHandler from "../ErrorHandle";
-import {StyledAutocomplete} from './styled-components'
+import Toast from "./../../components/Toast";
+import { StyledAutocomplete, ToastContainer } from "./styled-components";
 
 const mapOption = (option) => get("cityName", option);
+
+const allowdInputValue = (value) => {
+  return /^[a-zA-Z]+$/.test(value);
+};
 
 const SerachInput = ({
   options,
@@ -20,24 +24,32 @@ const SerachInput = ({
   getDailyForcast,
   unitType,
 }) => {
+  const [notValid, setNotValid] = useState(false);
+
   const handleInputChange = (_, value) => {
-    if (value) {
-      const location = find(
-        (option) => value === get("cityName", option),
-        options
-      );
-      if (location) {
-        getDailyForcast(
-          {
-            cityId: get("cityId", location),
-            metric: unitType === UNIT_TYPE.CELSIUS,
-          },
-          {
-            cityName: get("cityName", location),
-          }
+    const isValid = allowdInputValue(value);
+    if (!isValid) {
+      setNotValid(true);
+    } else {
+      setNotValid(false);
+      if (value) {
+        const location = find(
+          (option) => value === get("cityName", option),
+          options
         );
-      } else {
-        getLocationAutocomplete(value);
+        if (location) {
+          getDailyForcast(
+            {
+              cityId: get("cityId", location),
+              metric: unitType === UNIT_TYPE.CELSIUS,
+            },
+            {
+              cityName: get("cityName", location),
+            }
+          );
+        } else {
+          getLocationAutocomplete(value);
+        }
       }
     }
   };
@@ -54,14 +66,19 @@ const SerachInput = ({
   );
 
   return (
-    <ErrorHandler reducerName="weather">
+      <>
       <StyledAutocomplete
         freeSolo
         options={map(mapOption, options)}
         onInputChange={onInputChange}
         renderInput={renderInput}
       />
-    </ErrorHandler>
+      {notValid && (
+        <ToastContainer>
+          <Toast context="Please search in english letters only." />
+        </ToastContainer>
+      )}
+    </>
   );
 };
 
