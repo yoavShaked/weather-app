@@ -10,13 +10,15 @@ const initialState = {
   weatherForcast: [],
   cityName: "",
   description: "",
-  errorMessage: ''
+  errorMessage: '',
+  fetchForcast: false
 };
 
 const onDailyForcast = (payload, meta) =>
   flow([
     set("isLoading", false),
-    set("errorMessage", ''),
+    set("fetchForcast", false),
+    set("errorMessage", ""),
     set(
       "weatherForcast",
       map(
@@ -44,7 +46,11 @@ const onDailyForcast = (payload, meta) =>
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.GET_DAILY_FORCAST.START: {
-      const newState = flow([set('isLoading', true), set('errorMessage', '')])(state);
+      const newState = flow([
+        set("isLoading", true),
+        set("fetchForcast", true),
+        set("errorMessage", ""),
+      ])(state);
       return newState;
     }
     case types.GET_DAILY_FORCAST.RESOLVED: {
@@ -53,12 +59,11 @@ export default (state = initialState, action) => {
       return newState;
     }
     case types.GET_DAILY_FORCAST.ERROR: {
-      // console.log('a', action);
-      // return onDailyForcast(mock_dailyForcast, {
-      //   cityName: "Western Australia",
-      //   cityId: "3493236",
-      // })(state);
-     return flow([set("errorMessage", action.errorMessage), set('isLoading', false)])(state);
+     return flow([
+       set("errorMessage", action.errorMessage),
+       set("isLoading", false),
+       set("fetchForcast", false),
+     ])(state);
     }
     case types.SET_DEGREE_UNIT_TYPE: {
       const unitType = get("unitType", action.payload);
