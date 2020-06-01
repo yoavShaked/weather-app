@@ -48,7 +48,7 @@ const Forcast = ({
   return (
     <ErrorHandler reducerName="forcast">
       <Container flexDirection="column">
-        <Typography>{cityName}</Typography>
+        <Typography className='title'>{cityName}</Typography>
         <Typography>{currentFullTime}</Typography>
         <Typography>{description}</Typography>
         <ActionsContainer>
