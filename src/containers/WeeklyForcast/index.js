@@ -1,12 +1,12 @@
 import React from "react";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 import styled from "styled-components";
 import { get } from "lodash/fp";
 import { Typography } from "@material-ui/core";
 
-import Flexbox from "../components/Flexbox";
-import Icon from '../components/Icon';
+import Flexbox from "../../components/Flexbox";
+import Icon from "../../components/Icon";
 
 const WeeklyForcast = ({ weatherForcast, dayTime }) => {
   const mapWeather = (weather, index) => {
@@ -36,12 +36,12 @@ const WeatherItemContainer = styled(Flexbox)`
 `;
 
 const Container = styled(Flexbox)`
-    border: 1px solid;
-    border-radius: 7px;
-    height: 209px;
-    border-color: #27c2ffc7;
-    -webkit-box-shadow: 2px 2px 13px 5px #27c2ffc7;
-    box-shadow: 2px 2px 13px 5px rgba(39,194,255,0.78);
+  border: 1px solid;
+  border-radius: 7px;
+  height: 209px;
+  border-color: #27c2ffc7;
+  -webkit-box-shadow: 2px 2px 13px 5px #27c2ffc7;
+  box-shadow: 2px 2px 13px 5px rgba(39, 194, 255, 0.78);
 `;
 
 const mapStateToProps = (state) => ({

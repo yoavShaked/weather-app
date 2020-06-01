@@ -2,15 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 import { get, debounce, map, find } from "lodash/fp";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-import { UNIT_TYPE } from "../constants/titles";
-import * as weatherActions from "../actions/weather";
+import { UNIT_TYPE } from "../../constants/titles";
+import * as weatherActions from "../../actions/weather";
 
-import ErrorHandler from './ErrorHandle';
+import ErrorHandler from "../ErrorHandle";
 
 const mapOption = (option) => get("cityName", option);
 
@@ -54,16 +54,16 @@ const SerachInput = ({
     />
   );
 
-    return (
-      <ErrorHandler reducerName="weather">
-        <StyledAutocomplete
-          freeSolo
-          options={map(mapOption, options)}
-          onInputChange={onInputChange}
-          renderInput={renderInput}
-        />
-      </ErrorHandler>
-    );
+  return (
+    <ErrorHandler reducerName="weather">
+      <StyledAutocomplete
+        freeSolo
+        options={map(mapOption, options)}
+        onInputChange={onInputChange}
+        renderInput={renderInput}
+      />
+    </ErrorHandler>
+  );
 };
 
 const StyledAutocomplete = styled(Autocomplete)`

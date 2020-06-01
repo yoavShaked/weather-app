@@ -6,11 +6,11 @@ import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 
-import { UNIT_TYPE } from "../constants/titles";
-import * as weatherActions from "../actions/weather";
+import { UNIT_TYPE } from "../../constants/titles";
+import * as weatherActions from "../../actions/weather";
 
-import Flexbox from "../components/Flexbox";
-import Icon from "../components/Icon";
+import Flexbox from "../../components/Flexbox";
+import Icon from "../../components/Icon";
 
 const getWeatherData = (weatherObject, unitType = UNIT_TYPE.CELSIUS) => {
   const _unitType = unitType === UNIT_TYPE.CELSIUS ? "Metric" : "Imperial";

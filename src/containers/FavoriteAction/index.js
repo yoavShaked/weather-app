@@ -5,9 +5,9 @@ import { get } from "lodash/fp";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
-import * as favoritesActions from "./../actions/favorites";
+import * as favoritesActions from "../../actions/favorites";
 
-import ToggledComponent from "../components/ToggledComponent";
+import ToggledComponent from "../../components/ToggledComponent";
 
 const FavoriteAction = ({
   cityId,
