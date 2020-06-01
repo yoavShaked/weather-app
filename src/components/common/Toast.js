@@ -15,7 +15,7 @@ const Toast = ({severity, context}) => {
 
 Toast.propTypes = {
   severity: PropTypes.oneOf(["success", "error"]),
-  context: PropTypes.string.isRequired
+  context: PropTypes.any.isRequired
 };
 
 Toast.defaultProps = {
