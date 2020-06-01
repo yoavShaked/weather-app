@@ -6,9 +6,11 @@ import configureStore from "./store";
 import Main from './Main';
 
 const App = () => {
-   return <Provider store={configureStore()}>
-    <App />
-  </Provider>
+   return (
+     <Provider store={configureStore()}>
+       <Main />
+     </Provider>
+   );
 };
 
 export default App;
