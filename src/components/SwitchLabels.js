@@ -7,7 +7,6 @@ export default function SwitchLabels({
   checkedLabel,
   uncheckedLabel,
   afterChange,
-  color
 }) {
   const [state, setState] = useState({
     checked: true,
@@ -27,17 +26,17 @@ export default function SwitchLabels({
   };
 
   return (
-      <FormControlLabel
-        control={
-          <Switch
-            checked={state.checked}
-            onChange={handleChange}
-            name="checked"
-            color={color}
-          />
-        }
-        label={state.label}
-      />
+    <FormControlLabel
+      control={
+        <Switch
+          checked={state.checked}
+          onChange={handleChange}
+          name="checked"
+          color="primary"
+        />
+      }
+      label={state.label}
+    />
   );
 }
 
@@ -45,9 +44,4 @@ SwitchLabels.propTypes = {
   checkedLabel: PropTypes.string,
   uncheckedLabel: PropTypes.string,
   afterChange: PropTypes.func,
-  color: PropTypes.string
-};
-
-SwitchLabels.propTypes = {
-  color: "primary",
 };

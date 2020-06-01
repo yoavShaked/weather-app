@@ -23,8 +23,8 @@ const ToggledComponent = ({
 
 ToggledComponent.propTypes = {
   initialValue: PropTypes.bool,
-  OnComponent: PropTypes.node,
-  OffComponent: PropTypes.node,
+  OnComponent: PropTypes.any,
+  OffComponent: PropTypes.any,
   onClick: PropTypes.func
 };
 
