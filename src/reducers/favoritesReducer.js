@@ -5,20 +5,47 @@ const initialState = {
   favorites: null,
 };
 
+const mapFavoriteWeather = (recivedWeather) => ({
+    iconId: get("WeatherIcon", recivedWeather),
+    currentTemperature: get("ApparentTemperature", recivedWeather),
+    windSpeed: `${get(
+      ["Wind", "Speed", "Metric", "Value"],
+      recivedWeather
+    )} ${get(["Wind", "Speed", "Metric", "Unit"], recivedWeather)}`,
+    windDirction: get(["Wind", "Direction", "Localized"], recivedWeather),
+    weatherTitle: get("WeatherText", recivedWeather),
+    tempratureSummary: {
+      min: get(
+        ["TemperatureSummary", "Past24HourRange", "Minimum"],
+        recivedWeather
+      ),
+      max: get(
+        ["TemperatureSummary", "Past24HourRange", "Maximum"],
+        recivedWeather
+      ),
+    },
+    visibilty: `${get(["Visibility", "Metric", "Value"], recivedWeather)} ${get(
+      ["Visibility", "Metric", 'Unit'],
+      recivedWeather
+    )}`,
+})
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_TO_FAVORITES.RESOLVED: {
       const { payload, meta } = action;
       const cityName = get("cityName", meta);
+
       const newState = set(
         ["favorites", cityName],
         {
           cityId: get("cityId", meta),
           cityName,
-          details: isArray(payload) ? payload[0] : payload,
+          ...mapFavoriteWeather(isArray(payload) ? payload[0] : payload),
         },
         state
       );
+      console.log('new state favorite', newState);
       return newState;
     }
     case types.ADD_TO_FAVORITES.ERROR: {
