@@ -46,7 +46,6 @@ const Container = styled(Flexbox)`
 
 const mapStateToProps = (state) => ({
   weatherForcast: get(["forcast", "weatherForcast"], state),
-  isLoading: get(['forcst', 'isLoading'], state),
 });
 
 export default connect(mapStateToProps)(WeeklyForcast);
