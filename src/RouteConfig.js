@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./components/home/Home";
-import Favorites from "./components/favorites/Favorites";
+import Favorites from "./containers/Favorites";
 
 const RouteConfig = () => {
   return (
