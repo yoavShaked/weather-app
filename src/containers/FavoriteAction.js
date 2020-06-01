@@ -7,7 +7,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
 import * as favoritesActions from "./../actions/favorites";
 
-import ToggledComponent from "./../components/common/ToggledComponent";
+import ToggledComponent from "../components/ToggledComponent";
 
 const FavoriteAction = ({
   cityId,

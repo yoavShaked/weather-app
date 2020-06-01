@@ -9,8 +9,8 @@ import { Typography } from "@material-ui/core";
 import { UNIT_TYPE } from "../constants/titles";
 import * as weatherActions from "../actions/weather";
 
-import Flexbox from "./../components/common/Flexbox";
-import Icon from "../components/common/Icon";
+import Flexbox from "../components/Flexbox";
+import Icon from "../components/Icon";
 
 const getWeatherData = (weatherObject, unitType = UNIT_TYPE.CELSIUS) => {
   const _unitType = unitType === UNIT_TYPE.CELSIUS ? "Metric" : "Imperial";

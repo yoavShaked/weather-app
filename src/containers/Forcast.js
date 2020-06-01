@@ -7,16 +7,16 @@ import moment from "moment";
 import { get } from "lodash/fp";
 import { Typography } from "@material-ui/core";
 
-import * as weatherActions from "../actions/weather";
 import { DAY_TIME, UNIT_TYPE } from "../constants/titles";
+import * as weatherActions from "../actions/weather";
 
-import Flexbox from "../components/common/Flexbox";
-import SwitchLabels from "../components/common/SwitchLabels";
+import Flexbox from "../components/Flexbox";
+import SwitchLabels from "../components/SwitchLabels";
+import ForcastSkelaton from "../components/ForcastSkelaton";
+
 import ErrorHandler from "./ErrorHandle";
-
 import WeeklyForcast from "./WeeklyForcast";
 import FavoriteAction from "./FavoriteAction";
-import ForcastSkelaton from "./ForcastSkelaton";
 
 const Forcast = ({
   setInitialForcast,

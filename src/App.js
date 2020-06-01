@@ -1,13 +1,14 @@
 import React from "react";
+import { Provider } from "react-redux";
 
-import { BrowserRouter as Router } from "react-router-dom";
+import configureStore from "./store";
 
-import NevigationBar from "./components/common/Nevigationbar";
-import RouteConfig from "./RouteConfig";
 import Main from './Main';
 
 const App = () => {
-  return <Main/>
+   return <Provider store={configureStore()}>
+    <App />
+  </Provider>
 };
 
 export default App;

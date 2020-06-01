@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import { UNIT_TYPE } from "../../constants/titles";
-import * as configActions from '../../actions/config';
+import { UNIT_TYPE } from "../constants/titles";
+import * as configActions from '../actions/config';
 
 import SwitchLabels from "./SwitchLabels";
 

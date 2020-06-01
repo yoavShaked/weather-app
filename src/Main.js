@@ -2,7 +2,7 @@ import React from "react";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import styled from 'styled-components';
-import NevigationBar from "./components/common/Nevigationbar";
+import NevigationBar from "./components/Nevigationbar";
 import RouteConfig from "./RouteConfig";
 
 const Container = styled.div`

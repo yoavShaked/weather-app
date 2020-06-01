@@ -5,8 +5,8 @@ import styled from "styled-components";
 import { get } from "lodash/fp";
 import { Typography } from "@material-ui/core";
 
-import Flexbox from "../components/common/Flexbox";
-import Icon from '../components/common/Icon';
+import Flexbox from "../components/Flexbox";
+import Icon from '../components/Icon';
 
 const WeeklyForcast = ({ weatherForcast, dayTime }) => {
   const mapWeather = (weather, index) => {
