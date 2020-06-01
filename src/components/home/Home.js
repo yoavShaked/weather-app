@@ -1,15 +1,19 @@
 import React from "react";
 
-import ErrorBoundary from './../common/ErrorBoundary';
+import ErrorBoundary from "./../common/ErrorBoundary";
 import SearchInput from "../../containers/SearchInput";
 import Forcast from "../../containers/Forcast";
 
 const Home = () => {
   return (
-    <ErrorBoundary>
-      <SearchInput />
-      <Forcast />
-    </ErrorBoundary>
+    <>
+      <ErrorBoundary>
+        <SearchInput />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Forcast />
+      </ErrorBoundary>
+    </>
   );
 };
 
