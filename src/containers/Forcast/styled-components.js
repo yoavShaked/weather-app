@@ -19,6 +19,14 @@ export const Container = styled(Flexbox)`
            height: 28px;
            margin-top: 24px;
          }
+         .description,
+         .time,
+         .title {
+           white-space: nowrap;
+           width: 500px;
+           overflow: hidden;
+           text-overflow: ellipsis;
+         }
          @media screen and (max-width: 1024px) {
            width: 800px;
            margin: 0 auto;
