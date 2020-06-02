@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "http://yoavShaked.github.io/weather-app",
   "scripts": {
     "start": "webpack-dev-server --mode development --hot",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +21,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.5.2",
     "file-loader": "^6.0.0",
+    "gh-pages": "^3.0.0",
     "html-webpack-plugin": "^4.2.0",
     "style-loader": "^1.1.3",
     "webpack": "^4.42.1",
