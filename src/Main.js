@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import styled from 'styled-components';
 import NevigationBar from "./components/Nevigationbar";
 import RouteConfig from "./RouteConfig";
