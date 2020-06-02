@@ -36,20 +36,20 @@ export default (state = initialState, action) => {
       const { payload, meta } = action;
       const cityName = get("cityName", meta);
 
-      const newState = set(
-        ["favorites", cityName],
-        {
-          cityId: get("cityId", meta),
-          cityName,
-          ...mapFavoriteWeather(isArray(payload) ? payload[0] : payload),
-        },
-        state
-      );
-      console.log('new state favorite', newState);
-      return newState;
+      if(typeof cityName === 'string') {
+        return set(
+          ["favorites", cityName],
+          {
+            cityId: get("cityId", meta),
+            cityName,
+            ...mapFavoriteWeather(isArray(payload) ? payload[0] : payload),
+          },
+          state
+        );
+      }
+      return state;
     }
     case types.ADD_TO_FAVORITES.ERROR: {
-      const { payload } = action;
       return state;
     }
     case types.REMOVE_FROM_FAVORITES: {

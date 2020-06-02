@@ -59,16 +59,11 @@ export default (state = initialState, action) => {
       return newState;
     }
     case types.GET_DAILY_FORCAST.ERROR: {
-    //  return flow([
-    //    set("errorMessage", action.errorMessage),
-    //    set("isLoading", false),
-    //    set("fetchForcast", false),
-    //  ])(state);
-    const newState = onDailyForcast(mock_dailyForcast, {
-      cityId: "3493236",
-      cityName: "Western Australia",
-    })(state);
-    return newState;
+     return flow([
+       set("errorMessage", action.errorMessage),
+       set("isLoading", false),
+       set("fetchForcast", false),
+     ])(state);
     }
     case types.SET_DEGREE_UNIT_TYPE: {
       const unitType = get("unitType", action.payload);
