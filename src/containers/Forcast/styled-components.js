@@ -19,13 +19,83 @@ export const Container = styled(Flexbox)`
            height: 28px;
            margin-top: 24px;
          }
-         @media only screen and (min-width: 768px) {
-           width: 650px;
-           margin-left: 44px;
-         }
-         @media screen and (min-width: 1024px) {
+         @media screen and (max-width: 1024px) {
            width: 800px;
-           margin-left: 88px;
+           margin: 0 auto;
+         }
+         @media screen and (max-width: 900px) {
+           width: 600px;
+           margin: 0 auto;
+           overflow-y: auto;
+           &::-webkit-scrollbar {
+             width: 15px;
+             border-radius: 5px;
+           }
+
+           &::-webkit-scrollbar-track {
+             box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+           }
+
+           &::-webkit-scrollbar-thumb {
+             background-color: darkgrey;
+             outline: 1px solid slategrey;
+           }
+         }
+         @media screen and (max-width: 646px) {
+           width: 500px;
+           .description,
+           .time,
+           .title {
+             white-space: nowrap;
+             width: 400px;
+             overflow: hidden;
+             text-overflow: ellipsis;
+           }
+         }
+         @media screen and (max-width: 560px) {
+           width: 360px;
+           margin-top: 22px;
+           .description,
+           .time,
+           .title {
+             white-space: nowrap;
+             width: 242px;
+             overflow: hidden;
+             text-overflow: ellipsis;
+           }
+         }
+         @media screen and (max-width: 430px) {
+           width: 300px;
+           .description,
+           .time,
+           .title {
+             white-space: nowrap;
+             width: 200px;
+             overflow: hidden;
+             text-overflow: ellipsis;
+           }
+         }
+         @media screen and (max-width: 375px) {
+           width: 236px;
+           .description,
+           .time,
+           .title {
+             white-space: nowrap;
+             width: 170px;
+             overflow: hidden;
+             text-overflow: ellipsis;
+           }
+         }
+         @media screen and (max-width: 260px) {
+           width: 215px;
+           .description,
+           .time,
+           .title {
+             white-space: nowrap;
+             width: 120px;
+             overflow: hidden;
+             text-overflow: ellipsis;
+           }
          }
        `;
 

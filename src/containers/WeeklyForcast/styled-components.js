@@ -23,4 +23,10 @@ export const WeatherItemContainer = styled(Flexbox)`
 export const Container = styled(Flexbox)`
   height: 209px;
   justify-content: center;
+  @media screen and (max-width: 890px) {
+    flex-wrap: wrap;
+  }
+  @media screen and (max-width: 375px) {
+    flex-wrap: wrap;
+  }
 `;

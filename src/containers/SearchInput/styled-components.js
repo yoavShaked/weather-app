@@ -7,18 +7,35 @@ export const StyledAutocomplete = styled(Autocomplete)`
          margin: 0 auto;
          .MuiFormControl-fullWidth {
            width: 800px;
-           @media only screen and (min-width: 768px) {
-             width: 650px;
-           }
-           @media screen and (min-width: 1024px) {
+           @media screen and (max-width: 1024px) {
              width: 800px;
            }
-         }
-         @media only screen and (min-width: 768px) {
-           margin-left: 44px;
-         }
-         @media screen and (min-width: 1024px) {
-           margin-left: 87px;
+           @media screen and (max-width: 900px) {
+             width: 600px;
+           }
+
+           @media screen and (max-width: 646px) {
+             width: 500px;
+           }
+           @media screen and (max-width: 560px) {
+             width: 363px;
+             margin: 0 auto;
+             margin-top: 20px;
+           }
+           @media screen and (max-width: 430px) {
+             width: 300px;
+             margin: 0 auto;
+             margin-top: 20px;
+           }
+           @media screen and (max-width: 375px) {
+             width: 236px;
+             margin: 0 auto;
+             margin-top: 20px;
+           }
+           @media screen and (max-width: 260px) {
+             width: 215px;
+    
+           }
          }
        `;
 

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import moment from "moment";
 import { get } from "lodash/fp";
-import { Typography } from "@material-ui/core";
+import { Typography, Tooltip } from "@material-ui/core";
 
 import { DAY_TIME, UNIT_TYPE } from "../../constants/titles";
 import * as weatherActions from "../../actions/weather";
@@ -31,6 +31,7 @@ const Forcast = ({
 }) => {
   const [dayTime, setDayTime] = useState(DAY_TIME.DAY);
   useEffect(() => {
+    console.log('fetc'. fetchForcast);
     if (!fetchForcast) {
       setInitialForcast({
         cityName: "Tel Aviv",
@@ -48,9 +49,15 @@ const Forcast = ({
   return (
     <ErrorHandler reducerName="forcast">
       <Container flexDirection="column">
+        <Tooltip title={cityName}>
         <Typography className='title'>{cityName}</Typography>
-        <Typography>{currentFullTime}</Typography>
-        <Typography>{description}</Typography>
+        </Tooltip>
+        <Tooltip title={currentFullTime}>
+        <Typography className='time'>{currentFullTime}</Typography>
+        </Tooltip>
+        <Tooltip title={description}>
+        <Typography className='description'>{description}</Typography>
+        </Tooltip>
         <ActionsContainer>
           <SwitchLabels
             checkedLabel={DAY_TIME.DAY}
