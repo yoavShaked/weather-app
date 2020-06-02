@@ -14,7 +14,7 @@ import { StyledAutocomplete, ToastContainer } from "./styled-components";
 const mapOption = (option) => get("cityName", option);
 
 const allowdInputValue = (value) => {
-  return /^[a-zA-Z]+$/.test(value);
+  return /^[a-zA-Z\s]+$/.test(value);
 };
 
 const SerachInput = ({
@@ -27,7 +27,9 @@ const SerachInput = ({
   const [notValid, setNotValid] = useState(false);
 
   const handleInputChange = (_, value) => {
+    console.log('value', value);
     const isValid = allowdInputValue(value);
+    console.log("valid", isValid);
     if (!isValid) {
       setNotValid(true);
     } else {
