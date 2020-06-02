@@ -27,9 +27,9 @@ const SerachInput = ({
   const [notValid, setNotValid] = useState(false);
 
   const handleInputChange = (_, value) => {
-    console.log('value', value);
+    
     const isValid = allowdInputValue(value);
-    console.log("valid", isValid);
+
     if (!isValid) {
       setNotValid(true);
     } else {
